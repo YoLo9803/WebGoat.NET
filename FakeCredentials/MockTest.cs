@@ -31,7 +31,7 @@ namespace FackCredentials
             string pwd = Encoder.Decode("MTIzNDU2");
 
             // Act
-            bool loginOk = !dbProvider.IsValidCustomerLogin(email, pwd);
+            bool loginOk = dbProvider.IsValidCustomerLogin(email, pwd);
 
             // Assert
             Assert.IsTrue(loginOk);

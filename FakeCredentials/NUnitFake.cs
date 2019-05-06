@@ -2,22 +2,26 @@
 using System.IO;
 using OWASP.WebGoat.NET.App_Code;
 using OWASP.WebGoat.NET.App_Code.DB;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace FakeCredentials
 {
-    [TestClass]
-    public class FakeTest
+    [TestFixture]
+    public class NUnitFake
     {
-        [TestMethod]
-        public void FakeTest1()
+        [Test]
+        public void FakeTest2()
         {
             // Arrange
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string configName = Settings.DefaultConfigName;
+            configName = Path.Combine(baseDirectory, configName);
+            string sqliteFile = "webgoat_coins.sqlite";
+            sqliteFile = Path.Combine(baseDirectory, sqliteFile);
             string[] lines =
             {
                 "dbtype=Sqlite",
-                "filename=webgoat_coins.sqlite"
+                "filename=" + sqliteFile
             };
             File.WriteAllLines(configName, lines);
             ConfigFile configFile = new ConfigFile(configName);
