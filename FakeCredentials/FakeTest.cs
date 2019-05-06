@@ -10,7 +10,7 @@ namespace FakeCredentials
     public class FakeTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void FakeTest1()
         {
             // Arrange
             string configName = Settings.DefaultConfigName;

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 using System.Web;
 using Moq;
 using OWASP.WebGoat.NET.App_Code;
@@ -11,9 +11,17 @@ namespace FackCredentials
     public class MockTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void MokeTest1()
         {
             // Arrange
+            string configName = Settings.DefaultConfigName;
+            string[] lines =
+            {
+                "dbtype=Sqlite",
+                "filename=webgoat_coins.sqlite"
+            };
+            File.WriteAllLines(configName, lines);
+
             var mock = new Mock<HttpServerUtilityBase>();
             mock.Setup(x => x.MapPath(It.IsAny<string>())).Returns(Settings.DefaultConfigName);
             HttpServerUtilityBase wrapperServer = mock.Object;
@@ -27,6 +35,7 @@ namespace FackCredentials
 
             // Assert
             Assert.IsTrue(loginOk);
+            mock.Verify(x => x.MapPath(It.IsAny<string>()), Times.AtLeastOnce());
         }
     }
 }
