@@ -1,0 +1,32 @@
+﻿using System;
+using System.Web;
+using Moq;
+using OWASP.WebGoat.NET.App_Code;
+using OWASP.WebGoat.NET.App_Code.DB;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace FackCredentials
+{
+    [TestClass]
+    public class MockTest
+    {
+        [TestMethod]
+        public void TestMethod1()
+        {
+            // Arrange
+            var mock = new Mock<HttpServerUtilityBase>();
+            mock.Setup(x => x.MapPath(It.IsAny<string>())).Returns(Settings.DefaultConfigName);
+            HttpServerUtilityBase wrapperServer = mock.Object;
+            Settings.Init(wrapperServer);
+            IDbProvider dbProvider = Settings.CurrentDbProvider;
+            string email = "bob@ateliergraphique.com";
+            string pwd = Encoder.Decode("MTIzNDU2");
+
+            // Act
+            bool loginOk = !dbProvider.IsValidCustomerLogin(email, pwd);
+
+            // Assert
+            Assert.IsTrue(loginOk);
+        }
+    }
+}

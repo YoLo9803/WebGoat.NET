@@ -19,8 +19,8 @@ namespace OWASP.WebGoat.NET
                 BasicConfigurator.Configure();
             else
                 XmlConfigurator.Configure();
-            
-            Settings.Init(Server);
+            HttpServerUtilityBase wrapperServer = new HttpServerUtilityWrapper(Server);
+            Settings.Init(wrapperServer);
         }
 
         protected void Session_Start(object sender, EventArgs e)

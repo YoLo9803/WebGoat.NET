@@ -23,7 +23,7 @@ namespace OWASP.WebGoat.NET.App_Code
 
         private static ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
   
-        public static void Init(HttpServerUtility server)
+        public static void Init(HttpServerUtilityBase server)
         {
             lock (_lock)
             {
