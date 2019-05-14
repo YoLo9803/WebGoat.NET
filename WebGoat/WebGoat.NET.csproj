@@ -1068,12 +1068,13 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
-    <Folder Include="Configuration\" />
     <Folder Include="WebGoatCoins\uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="WebGoatCoins\ProductDetails.aspx" />
     <Content Include="WebGoatCoins\Web.config" />
+    <Content Include="Configuration\Default.config" />
+    <None Include="CustomProfile.pubxml" />
     <None Include="Downloads\authentication.pdf" />
     <None Include="Downloads\csrf.pdf" />
     <None Include="Downloads\transport_layer.pdf" />
